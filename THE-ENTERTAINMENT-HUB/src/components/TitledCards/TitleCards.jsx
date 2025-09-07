@@ -1,13 +1,29 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './TitleCards.css'
 import cardsData from '../../assets/cards/Cards_data';
 
 
-const TitleCards = (props) => {
+const TitleCards = ({title, category}) => {
 
+const [apiData, setAPIData] = useState([]);
 const cardsRef = useRef();
 
+const options = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNjg3NDBiOTA2N2UzOGQ5NWRhOTAyMTAzNWJjY2M3YSIsIm5iZiI6MTc1NzE2MTE2NC44NDcwMDAxLCJzdWIiOiI2OGJjMjZjY2FkM2ZjMDUzYjQ5YmJiY2MiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.kTWATfy36naG_x5A0S0QHU79Bc7_soLG_Vzmgeh2sOg'
+  }
+};
+
+
 useEffect(() => {
+
+  fetch(`https://api.themoviedb.org/3/movie/${category? category: "now_playing"}?page=1`, options)
+  .then(res => res.json())
+  .then(res => setAPIData(res.results))
+  .catch(err => console.error(err));
+
   const el = cardsRef.current;
   
   const wheelHandler = (event) => {
@@ -22,13 +38,13 @@ useEffect(() => {
 
   return (
     <div className='titleCardsDiv'>
-      <h1> {props.title? props.title: 'Popular on TEH'} </h1>     
+      <h1> {title? title: 'Popular on TEH'} </h1>     
 
       <div className="cardList" ref={cardsRef}>
-        {cardsData.map((card, index) => {
+        {apiData.map((card, index) => {
           return <div className="card" key={index}>
-            <img src={card.image} alt={card.name} />
-            <p>{card.name}</p>
+            <img  src={`https://image.tmdb.org/t/p/w500${card.backdrop_path}`}  alt={card.name} />
+            <p>{card.original_title}</p>
           </div>
         })}
       </div> 
