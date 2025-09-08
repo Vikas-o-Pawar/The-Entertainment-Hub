@@ -30,5 +30,40 @@
 .cardList .card p {
     position: absolute;
     bottom: 10px;
+    text-decoration: none;
+    color: white;
     right: 10px;
+}
+
+@media (max-width: 800px) {
+    .titleCardsDiv {
+        margin-top: 20px;
+        margin-bottom: 0px;
+    }
+
+    .titleCardsDiv h2 {
+        font-size: 20px;
+    }
+
+    .cardList img {
+        width: 200px;
+    }
+
+    .cardList p {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 500px) {
+    .titleCardsDiv h2 {
+        font-size: 14px;
+    }
+
+    .cardList img {
+        width: 165px;
+    }
+
+    .cardList p {
+        font-size: 9px;
+    }
 }

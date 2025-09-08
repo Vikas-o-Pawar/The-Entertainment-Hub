@@ -8,7 +8,7 @@ import facebookIcon from '../../assets/facebook.svg'
 
 const Footer = () => {
   return (
-    <div className='footer'>Footer
+    <div className='footer'>
       <div className="footerIcons">
         <img src={instagramIcon} alt="instagram" />
         <img src={facebookIcon} alt="facebook" />

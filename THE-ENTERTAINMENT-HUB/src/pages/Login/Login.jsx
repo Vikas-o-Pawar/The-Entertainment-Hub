@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Login.css'
 // import TEHLogo from '../../assets/logo.png'
-
+// import loginSpinner from '../../assets/spinner.svg';
 
 const Login = () => {
   const [signState, setSignState] = useState("Sign In");

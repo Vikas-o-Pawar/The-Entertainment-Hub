@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import "./Navbar.css"
 import tmhLogo from '../../assets/TMH_LOGO.png'
 import searchIcon from '../../assets/searchIcon.svg'
@@ -9,8 +9,21 @@ import dropDownIcon from '../../assets/dropDown.svg'
 
 
 const Navbar = () => {
+
+  const navRef = useRef();
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      if(window.scrollY >= 80) {
+        navRef.current.classList.add('navDark');
+      } else {
+        navRef.current.classList.remove('navDark');
+      }
+    });
+  }, []);
+
   return (
-    <div className='navbar'>
+    <div className='navbar' ref={navRef}>
       <div className="navbarLeft">
         <img src={tmhLogo} alt="logo" />
         <ul>
@@ -23,7 +36,7 @@ const Navbar = () => {
         </ul>
       </div>
 
-      <div className="navbarRight">
+      <div className="navbarRight"  >
         <img id='searchIcon' src={searchIcon} className='icons' alt="searchIcon" />
         {/* <p>Children</p> */}
         <img id='bellIcon' src={bellIcon} className='icons' alt="searchIcon" />
